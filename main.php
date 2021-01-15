@@ -20,40 +20,40 @@
 <script>
 
 
-var data = 0;
-var options = 0;
+var data = 0;			//variable for refreshing page and changing question
+var options = 0;		//variaable to store selected option
 
 function next() {
-  if(data<=2)
+  if(data<=2)							//2 questions only
   {
-	var xmlhttp = new XMLHttpRequest();
+	var xmlhttp = new XMLHttpRequest();			//using ajax to refresh question
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("demo").innerHTML = this.responseText;
-      }
+      }	
     };
     xmlhttp.open("GET", "nextQ.php?no=" + data, true);
     xmlhttp.send();
-    data = data + 1;
+    data = data + 1;						
     if(data>0)
-    {
-      updateCookie(data, options);
+    {	
+      updateCookie(data, options);			//storing asnwers in cookie
       options=0;
     }
 
   }
   else
   {
-    document.getElementById("demo").innerHTML = "Completed";
+    document.getElementById("demo").innerHTML = "Completed";			//the end
   }
 }
 
 function clickedval(str) {
-       options = str;
+       options = str;								//storing ans in cookie
 }
 
 function updateCookie(data, options) {
-  document.cookie = "Q"+data+" = "+options;
+  document.cookie = "Q"+data+" = "+options;					
 }
 
 </script>
@@ -64,7 +64,7 @@ function updateCookie(data, options) {
   <div id="demo">
   Enter Your Name: <input type="text" name="name">
   </div>
-  <input type="button" id = 'n1' onclick="next()" value="Next">
+  <input type="button" id = 'n1' onclick="next()" value="Next">	
   <input type="Submit" name="Submit">
 </form >
 <p id="Complete">
